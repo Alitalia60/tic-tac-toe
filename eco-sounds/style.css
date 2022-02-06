@@ -1,65 +1,122 @@
+:root {
+    --color-bg: #000;
+    --color-text: #fff;
+    --color-hover: #bdae82;
+}
+
 html {
-  width: 1920px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: #000;
-  color: #fff;
-  font-size: 30px;
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 768px;
+    background-color: var(--color-bg);
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    color: var(--color-text);
 }
 
 a {
-  color: #fff;
-  text-decoration: none;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-hover);
 }
 
 header {
-  border: 1px solid red;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 50px;
-}
-.nav {
-  height: 90px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  cursor: pointer;
+    height: 10%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px;
 }
 
-.logo > a {
-  display: block;
-  cursor: pointer;
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
 }
+
+.logo {
+    width: 61px;
+    height: 52px;
+    background-image: url(./assets/svg/logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+    cursor: pointer;
+}
+
+.logo:hover {
+    filter: none;
+}
+
 .menu {
-  display: flex;
-  gap: 40px;
-  list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0px;
+    list-style: none;
+}
+
+.menu-bird:hover {
+    color: var(--color-hover);
+}
+
+.selected {
+    color: var(--color-hover);
 }
 
 .screen {
-  border: 1px solid red;
-  height: 100vh;
-  background-image: url(./assets/img/forest.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    position: relative;
+    height: calc(100vh - 145px);
+    /* background-image: url(./assets/img/forest.jpg); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .play-button {
-  position: absolute;
-  top: calc(100vh-110px);
-  background-color: transparent;
-  border: none;
-  left: 50%;
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    left: calc(50% - 70px);
+    top: calc(50% - 70px);
+    background-image: url("./assets/svg/play.svg");
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    transition: .3s;
 }
+
+footer {
+    height: 6%;
+}
+
 .footer_container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #fff;
-  /* gap: 50px; */
-  /* width: 1920px; */
-  border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-text);
+    /* gap: 50px; */
+    width: 90%;
+    margin: auto;
+    /* border: 1px solid red; */
+}
+
+.footer_data>span {
+    margin-right: 20px;
+}
+
+.footer_year {
+    justify-self: center;
+}
+
+.footer_rsschool {
+    margin-right: 50px;
 }
