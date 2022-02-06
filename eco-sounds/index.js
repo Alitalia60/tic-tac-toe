@@ -5,6 +5,7 @@ const audio_path = './assets/audio/';
 let isPlaying = false;
 
 var myAudio = document.createElement('audio');
+myAudio.src = `${audio_path}forest.mp3`;
 
 const menu = document.querySelector('.menu');
 menu.addEventListener('click', selectBirdMenu)
