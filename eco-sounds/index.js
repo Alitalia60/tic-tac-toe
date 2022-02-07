@@ -6,6 +6,7 @@ let isPlaying = false;
 
 var myAudio = document.createElement('audio');
 myAudio.src = `${audio_path}forest.mp3`;
+myAudio.loop = true;
 
 const menu = document.querySelector('.menu');
 menu.addEventListener('click', selectBirdMenu)
@@ -85,4 +86,4 @@ function getScore() {
     console.log("5. Кнопка Play/Pause +20")
     console.log("   есть кнопка Play/Pause, при клике по которой можно запустить или остановить проигрывание звука +10")
     console.log("   внешний вид и функционал кнопки Play/Pause изменяется в зависимости от того, проигрывается ли в данный момент звук +10")
-    }
+}
