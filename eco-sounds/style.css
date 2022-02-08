@@ -1,0 +1,133 @@
+:root {
+    --color-bg: #000;
+    --color-text: #fff;
+    --color-hover: #bdae82;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 768px;
+    background-color: var(--color-bg);
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    color: var(--color-text);
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-hover);
+}
+
+header {
+    height: 10%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.logo {
+    width: 61px;
+    height: 52px;
+    background-image: url(./assets/svg/logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+    cursor: pointer;
+}
+
+.logo:hover {
+    filter: none;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+    margin: 0px;
+    list-style: none;
+}
+
+.menu-bird,
+.play-button,
+.logo,
+.footer_data>a,
+.footer_rsschool {
+    transition-duration: 0.3s;
+}
+
+.menu-bird:hover {
+    color: var(--color-hover);
+}
+
+.selected {
+    color: var(--color-hover);
+}
+
+.screen {
+    position: relative;
+    height: calc(100vh - 145px);
+    background-image: url(./assets/img/forest.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.play-button {
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    left: calc(50% - 70px);
+    top: calc(50% - 70px);
+    background-image: url("./assets/svg/play.svg");
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+footer {
+    height: 6%;
+}
+
+.footer_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-text);
+    /* gap: 50px; */
+    width: 90%;
+    margin: auto;
+    /* border: 1px solid red; */
+}
+
+.footer_data>span {
+    margin-right: 20px;
+}
+
+.footer_year {
+    justify-self: center;
+}
+
+.footer_rsschool {
+    margin-right: 50px;
+}
+
+.footer_rsschool:hover {
+    filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
+}
