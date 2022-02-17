@@ -1,43 +1,109 @@
+:root {
+    --color-background: blue;
+}
+
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     /* font-family: 'Gloria Hallelujah', cursive; */
-font-family: 'Merriweather', serif;
-    
+    font-family: 'Merriweather', serif;
 }
 
-body,button {
+body,
+button {
     font-family: 'Indie Flower', cursive;
-    
 }
 
 header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: transparent;
-
+    background-color: var(--color-background);
 }
 
-.mute {
-    background: url(./assets/img/nota.png) center no-repeat;
-    /* background-size: contain; */
+.btn_mute {
+    background: url(./assets/img/Sound_on.png) center no-repeat;
+    background-position: center;
+    background-size: contain;
     width: 50px;
     height: 50px;
     background-color: transparent;
-    
+    cursor: pointer;
+    /* border: 1px solid #fff; */
+}
+
+.mute {
+    background-image: url(./assets/img/Sound_off.png);
+}
+
+.controls {
+    /* border: 1px solid green; */
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.controls_music,
+.controls_sound {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
+
+.switch {
+    margin-top: 10px;
+    display: flex;
+    width: 50px;
+    height: fit-content;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    justify-content: flex-end;
+}
+
+.switch .point {
+    width: 15px;
+    height: 15px;
+    border-radius: 7px;
+    background-color: red;
+    transition-duration: 0.5s;
+}
+
+.switch_off .point {
+    background-color: grey;
+    transform: translateX(-35px);
 }
 
 main {
     padding-top: 50px;
     width: 100%;
     height: 70vh;
-    /* background-image: url(./assets/img/tic-tac-toe-background.jpg); */
-    /* background-image: url(./assets/img/kisspng-heart-tic-tac-toe-play-tic-tac-toe-free-tic-tac-tic-tac-5b1e6050ae1b84.0311700715287173927132.png); */
     background-image: url(./assets/img/krestik-nolik-feniks-bumaga.jpg);
     background-size: contain;
     background-position: 0 0;
+}
+
+.score_table {
+    list-style: none;
+    font-size: 36px;
+    width: 250px;
+    height: 500px;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    border: solid 10px rgb(124, 53, 218);
+    border-radius: 0px 30px 30px 0px;
+    background-color: rgb(179, 82, 82);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    transition: all 1s;
 }
 
 #field {
@@ -55,12 +121,23 @@ main {
     border: 3px double #000;
     border-radius: 5px;
     font-size: 50px;
-    padding: 75px;
     transition-duration: 0.5s;
-    /* font-family: 'Gloria Hallelujah', cursive; */
     font-size: 50px;
     cursor: pointer;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-size: 130px 130px;
+    background-repeat: no-repeat;
+}
+
+.cell_krug {
+    background-image: url(./assets/img/krug.png);
+}
+
+.cell_krest {
+    background-image: url(./assets/img/krest.png);
 }
 
 .cell_a1 {
@@ -99,44 +176,43 @@ main {
     grid-area: c3;
 }
 
-.game_over{
-    width: 600px;
-    height: 300px;
+.game_over_box {
+    width: 800px;
+    height: 400px;
+    position: absolute;
+    top: 150px;
+    left: calc(50% - 400px);
     border: solid 10px rgb(124, 53, 218);
     border-radius: 30px;
-    position: absolute;
-    /* top: -330px; */
-    top: 30px;
-    left: calc(50% - 300px);
     background-color: rgb(179, 82, 82);
-    transition: all 0.5s;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    transition: all 0.5s;
+    cursor: auto;
 }
 
-h1{
+h1 {
     padding: 0;
     margin: 0;
     font-size: 50px;
 }
 
-.btn_start_game{
+.btn_start_game {
     display: block;
     width: 200px;
     height: 50px;
     border: 5px solid brown;
+    border-radius: 30px;
     cursor: pointer;
-
 }
-
 
 header,
 footer {
     color: white;
     background-color: black;
-    height: 10vh;
+    height: 12vh;
     font-size: 36px;
 }
 

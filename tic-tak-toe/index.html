@@ -6,16 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tic-tak-toe</title>
-       <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
         <h3>tic-tak-toe</h3>
-        <!-- <div class="mute"><img src="./assets/img/nota.png" width="45" height="45" alt=""></div> -->
-        <div class="mute"></div>
+        <div class="controls">
+            <div class="controls_music">
+                <div class="switch music_mute">
+                    <div class="point"></div>
+                </div>
+                <span>music</span>
+            </div>
+            <div class="controls_sound">
+                <div class="switch sound_mute">
+                    <div class="point "></div>
+                </div>
+                <span>sound</span>
+            </div>
+        </div>
     </header>
     <main>
+        <div class="score">
+            <ul class="score_table">
+                <li class="score_step">
+                    <span>Moves:</span> <span></span>
+                </li>
+                <li class=""></li>
+                <li class="score_x_wins">
+                    <span>X wins:</span> <span></span>
+                </li>
+                <li class="score_o_wins">
+                    <span>O wins:</span> <span></span>
+                </li>
+            </ul>
+        </div>
         <div id="field">
             <div class="cell" id="a1"></div>
             <div class="cell" id="a2"></div>
@@ -27,7 +53,7 @@
             <div class="cell" id="c2"></div>
             <div class="cell" id="c3"></div>
         </div>
-        <div class="game_over">
+        <div class="game_over_box">
             <h1 class="game_status">READY</h1>
             <button class="btn_start_game">PRESS TO START</button>
         </div>
