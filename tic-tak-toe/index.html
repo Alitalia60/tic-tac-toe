@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tic-tak-toe</title>
-    <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
         <h3>tic-tak-toe</h3>
-        <audio class="background_music" src="./assets/audio/preview.mp3" controls loop></audio>
+        <!-- <div class="mute"><img src="./assets/img/nota.png" width="45" height="45" alt=""></div> -->
+        <div class="mute"></div>
     </header>
     <main>
         <div id="field">
@@ -25,6 +26,10 @@
             <div class="cell" id="c1"></div>
             <div class="cell" id="c2"></div>
             <div class="cell" id="c3"></div>
+        </div>
+        <div class="game_over">
+            <h1 class="game_status">READY</h1>
+            <button class="btn_start_game">PRESS TO START</button>
         </div>
     </main>
     <footer>

@@ -2,23 +2,40 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* font-family: 'Gloria Hallelujah', cursive; */
+font-family: 'Merriweather', serif;
+    
+}
+
+body,button {
+    font-family: 'Indie Flower', cursive;
+    
 }
 
 header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+    background-color: transparent;
+
 }
 
-audio {
-    display: block;
+.mute {
+    background: url(./assets/img/nota.png) center no-repeat;
+    /* background-size: contain; */
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    
 }
 
 main {
     padding-top: 50px;
     width: 100%;
     height: 70vh;
-    background-image: url(./assets/img/tic-tac-toe-background.jpg);
+    /* background-image: url(./assets/img/tic-tac-toe-background.jpg); */
+    /* background-image: url(./assets/img/kisspng-heart-tic-tac-toe-play-tic-tac-toe-free-tic-tac-tic-tac-5b1e6050ae1b84.0311700715287173927132.png); */
+    background-image: url(./assets/img/krestik-nolik-feniks-bumaga.jpg);
     background-size: contain;
     background-position: 0 0;
 }
@@ -40,6 +57,10 @@ main {
     font-size: 50px;
     padding: 75px;
     transition-duration: 0.5s;
+    /* font-family: 'Gloria Hallelujah', cursive; */
+    font-size: 50px;
+    cursor: pointer;
+    
 }
 
 .cell_a1 {
@@ -77,6 +98,39 @@ main {
 .cell_a1 {
     grid-area: c3;
 }
+
+.game_over{
+    width: 600px;
+    height: 300px;
+    border: solid 10px rgb(124, 53, 218);
+    border-radius: 30px;
+    position: absolute;
+    /* top: -330px; */
+    top: 30px;
+    left: calc(50% - 300px);
+    background-color: rgb(179, 82, 82);
+    transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h1{
+    padding: 0;
+    margin: 0;
+    font-size: 50px;
+}
+
+.btn_start_game{
+    display: block;
+    width: 200px;
+    height: 50px;
+    border: 5px solid brown;
+    cursor: pointer;
+
+}
+
 
 header,
 footer {
