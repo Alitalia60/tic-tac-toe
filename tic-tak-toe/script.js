@@ -10,7 +10,7 @@ const messages = {
 };
 let step = 0;
 let
-    whoseMove = '0';
+    whoseMove = 'X';
 const cells = {
     a1: '',
     a2: '',
