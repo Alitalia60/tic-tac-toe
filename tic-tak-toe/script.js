@@ -211,6 +211,20 @@ function checkWinner() {
         showInfoBox([messages.over, 'red'], [messages.draw, 'yellow']);
         return;
     }
+    if (
+        cells.a1 + cells.b2 + cells.c3 == '000' ||
+        cells.a3 + cells.b2 + cells.c1 == '000' ||
+        cells.a1 + cells.a2 + cells.a3 == '000' ||
+        cells.b1 + cells.b2 + cells.b3 == '000' ||
+        cells.c1 + cells.c2 + cells.c3 == '000' ||
+        cells.a1 + cells.b1 + cells.b3 == '000' ||
+        cells.a2 + cells.b2 + cells.c2 == '000' ||
+        cells.a3 + cells.b3 + cells.c3 == '000'
+    ) {
+        countWinsO++;
+        gameOver([messages.gameOver, 'red'], [messages.o_win, 'yellow']);
+        return;
+    }
 }
 
 //=================================================
