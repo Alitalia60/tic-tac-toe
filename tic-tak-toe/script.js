@@ -28,6 +28,8 @@ const colorCellO = 'cyan';
 let countDraw = 0;
 let countWinsX = 0;
 let countWinsO = 0;
+const arrayOfScore = []
+
 const completedMoves = [];
 
 document.addEventListener('DOMContentLoaded', init);
@@ -81,17 +83,14 @@ function init() {
 //=================================================
 function changeAction() {
     if (gameStatus != 'running') {
-        console.log('gameStatus1=', gameStatus);
         gameStatus = 'running'
         hideInfoBox()
         playGame()
     } else if (gameStatus == 'running') {
-        console.log('gameStatus2=', gameStatus);
         gameStatus = 'paused'
         showInfoBox([messages.paused, 'green'])
         pauseGame()
     }
-    console.log('gameStatus3=', gameStatus);
 }
 
 //=================================================
@@ -235,8 +234,24 @@ function gameOver() {
     field.removeEventListener('click', putLabel);
     showStatusBox();
     btnPlay.textContent = 'PRESS TO RESTART';
+    saveSession();
+    //save to localStorage
 }
 
+//=================================================
+function saveSession() {
+    arrayOfScore.push(countWinsO + ';' + countWinsX + ';' + countDraw)
+    if (arrayOfScore.length > 10) {
+        arrayOfScore.shift();
+    }
+    localStorage.setItem('scoreHistory', arrayOfScore.join(' '));
+    console.log(arrayOfScore);
+}
+
+function getSession() {
+    let fromHistory = localStorage.getItem('scoreHistory');
+    console.log(fromHistory.split(' '));
+}
 //=================================================
 function showInfoBox(mes1, mes2) {
     gameOverBox.style.top = '150px';

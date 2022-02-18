@@ -239,6 +239,10 @@ footer {
     color: white;
 }
 
+.footer_data>a:hover {
+    color: #958b6d;
+}
+
 .footer_year {
     justify-self: center;
 }
