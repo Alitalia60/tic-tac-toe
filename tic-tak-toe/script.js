@@ -75,6 +75,7 @@ function init() {
     backSound.volume = 0.1;
     clickSound.src = '/tic-tak-toe/assets/audio/click.wav';
     showInfoBox([messages.ready, 'white'])
+    playMusic();
 }
 
 //=================================================
@@ -277,8 +278,8 @@ function showStatusBox() {
 
 //=================================================
 function pauseGame(ev) {
-    musicMute = true;
-    playMusic()
+    // musicMute = true;
+    // playMusic()
     field.removeEventListener('click', putLabel)
     showInfoBox([messages.paused, 'yellow']);
     btnPlay.textContent = 'PRESS TO CONTINUE';
