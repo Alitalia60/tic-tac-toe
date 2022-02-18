@@ -38,7 +38,7 @@ let soundMute = false;
 let musicMute = false;
 
 const field = document.getElementById('field');
-
+//запрет прокрутки экрана
 const switchMusicMute = document.querySelector('.music_mute');
 switchMusicMute.addEventListener('click', toggleVolume);
 
@@ -69,6 +69,7 @@ function toggleVolume(ev) {
 
 //=================================================
 function init() {
+    document.body.style.overflow = 'hidden'
     btnPlay.addEventListener('click', changeAction);
     backSound.src = './assets/audio/preview.mp3';
     backSound.volume = 0.1;
