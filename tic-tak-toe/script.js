@@ -9,7 +9,8 @@ const messages = {
   over: 'GAME OVER',
 };
 let step = 0;
-let move = '0';
+let 
+whoseMove = '0';
 const cells = {
   a1: '',
   a2: '',
@@ -78,6 +79,7 @@ function playGame(ev) {
   if (ev.target != btnPlay) {
     return;
   }
+  field.addEventListener('click',putLabel)
   if (gameStatus == 'ready' || gameStatus == 'finished') {
     gameStatus = 'running';
     completedMoves.length = 0;
@@ -89,18 +91,19 @@ function playGame(ev) {
     gameOverBox.addEventListener('click', pauseGame);
   } else if (gameStatus == 'paused') {
     gameStatus = 'running';
-    field.addEventListener('click',putLabel)
   }
-
+  
   hideInfoBox('');
 }
 
+//=================================================
 function playSounds() {
   if (!soundMute) {
     clickSound.play();
   }
 }
 
+//=================================================
 function playMusic() {
   if (!musicMute) {
     backSound.play();
@@ -137,7 +140,8 @@ function putLabel(ev) {
     playSounds();
     step++;
     if (cell.textContent == '') {
-      if (move == '0') {
+      if (
+whoseMove == '0') {
         cell.style.backgroundColor = 'cyan';
         cell.classList.add('cell_krug');
         cells[cell.id] = '0';
@@ -149,7 +153,9 @@ function putLabel(ev) {
         cell.style.transform = 'rotateZ(180deg)';
         // cell.style.transform = 'rotateY(180deg)';
       }
-      move = move == '0' ? 'X' : '0';
+      
+whoseMove = 
+whoseMove == '0' ? 'X' : '0';
     }
 
     showStatusBox();
@@ -195,33 +201,23 @@ function checkWinner() {
 }
 
 //=================================================
-function gameOver(arrayMessge) {
+function gameOver(arrayMessage) {
   gameStatus = 'finished';
   field.removeEventListener('click', putLabel);
   showStatusBox();
-  showInfoBox(arrayMessge);
+  showInfoBox([messages.over, 'yellow']);
   btnPlay.textContent = 'PRESS TO RESTART';
 }
 
-function showInfoBox(arrayMessge) {
+function showInfoBox(arrayMessage) {
   gameOverBox.style.top = '150px';
-  const h2 = document.querySelector('.game_status');
-  arrayMessge.forEach(elemMessage => {
-      h2.textContent += '\n'+elemMessage[0];
-      h2.style.color = elemMessage[1]
-  });
   gameOverBox.style.cursor = 'auto';
+  showMessage(arrayMessage)
 }
 
 function hideInfoBox() {
-  // const gameOverBox = document.querySelector('.game_over_box');
   gameOverBox.style.cursor = 'pointer';
   gameOverBox.style.top = '-400px';
-//   const h2 = document.querySelector('.game_status');
-//   arrayMessge.forEach(elemMessage => {
-//     h2.textContent += '\n'+elemMessage[0];
-//     h2.style.color = elemMessage[1]
-// });
 
 }
 
@@ -235,9 +231,21 @@ function pauseGame(ev) {
   if (ev.target != gameOverBox) {
     return;
   }
+  musicMute = true;
+  playMusic()
   field.removeEventListener('click',putLabel)
   gameStatus = 'paused';
 
   showInfoBox([messages.paused, 'yellow']);
   btnPlay.textContent = 'PRESS TO CONTINUE';
+}
+
+
+function showMessage(arrayMessage){
+  const h2 = document.querySor('.game_status');
+  arrayMessage.forEach(lineMessage => {
+      h2.textContent += lineMessage[0];
+      h2.style.color = lineMessage[1]
+  });
+   
 }

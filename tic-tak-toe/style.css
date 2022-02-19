@@ -88,6 +88,8 @@ main {
     background-image: url(./assets/img/krestik-nolik-feniks-bumaga.jpg);
     background-size: contain;
     background-position: 0 0;
+    position: relative;
+    overflow: hidden;
 }
 
 .score_table {
