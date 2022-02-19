@@ -191,7 +191,6 @@ main {
     background-color: rgb(179, 82, 82);
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     transition: all 0.5s;
     cursor: auto;
@@ -200,6 +199,7 @@ main {
 h1 {
     padding: 0;
     margin: 0;
+    margin-top: 20px;
     font-size: 50px;
 }
 
@@ -210,6 +210,8 @@ h1 {
     border: 5px solid brown;
     border-radius: 30px;
     cursor: pointer;
+    position: absolute;
+    bottom: 70px;
 }
 
 header,
@@ -235,6 +237,10 @@ footer {
 
 .footer_data>a {
     color: white;
+}
+
+.footer_data>a:hover {
+    color: #958b6d;
 }
 
 .footer_year {
