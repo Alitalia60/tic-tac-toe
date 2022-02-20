@@ -90,24 +90,76 @@ main {
     background-position: 0 0;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
 }
 
-.score_table {
+.info_table {
     list-style: none;
     font-size: 36px;
-    width: 250px;
+    width: 280px;
     height: 500px;
-    position: absolute;
-    top: 100px;
-    left: 0px;
-    border: solid 10px rgb(124, 53, 218);
+    border: solid 10px rgb(59, 14, 117);
     border-radius: 0px 30px 30px 0px;
-    background-color: rgb(179, 82, 82);
+    background-color: rgb(108 115 117);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: flex-start;
     transition: all 1s;
+    margin: 0px;
+    padding: 0px;
+    color: #fefefa;
+}
+
+li {
+    margin-left: 30px;
+}
+
+table {
+    width: 80%;
+    margin: auto;
+    font-size: 24px;
+    border-collapse: collapse;
+    font-weight: 900;
+    line-height: 30px;
+}
+
+.history_table {
+    border-radius: 30px 0px 0px 30px;
+}
+
+caption {
+    margin-bottom: 30px;
+    font-size: 36px;
+}
+
+#th-x,
+#th-o,
+#th-d {
+    /* width: 30%; */
+    /* text-align: center; */
+    border-bottom: 1px solid #000;
+}
+
+td {
+    /* width: 20%; */
+    text-align: center;
+}
+
+#td-o,
+#td-x,
+#td-d {
+    border-bottom: 1px solid #000;
+    ;
+}
+
+button#clear_history {
+    width: 50%;
+    margin: auto;
+    height: 35px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 5px solid brown;
 }
 
 #field {
@@ -118,6 +170,7 @@ main {
     grid-template-areas: "a1 a2 a3" "b1 b2 b3" "c1 c2 c3";
     border: 5px solid black;
     background-color: var(--color-cell);
+    transition-duration: 0.5s;
 }
 
 .cell {
@@ -182,13 +235,13 @@ main {
 
 .game_over_box {
     width: 800px;
-    height: 400px;
+    height: 320px;
     position: absolute;
     top: 150px;
     left: calc(50% - 400px);
-    border: solid 10px rgb(124, 53, 218);
+    border: solid 10px rgb(104, 25, 207);
     border-radius: 30px;
-    background-color: rgb(179, 82, 82);
+    background-color: rgb(13, 26, 139);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -212,6 +265,7 @@ h1 {
     cursor: pointer;
     position: absolute;
     bottom: 70px;
+    transition-duration: 0.5s;
 }
 
 header,
