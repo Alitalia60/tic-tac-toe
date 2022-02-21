@@ -10,12 +10,12 @@ body {
     padding: 0;
     box-sizing: border-box;
     /* font-family: 'Gloria Hallelujah', cursive; */
-    font-family: 'Merriweather', serif;
+    font-family: "Merriweather", serif;
 }
 
 body,
 button {
-    font-family: 'Indie Flower', cursive;
+    font-family: "Indie Flower", cursive;
 }
 
 header {
@@ -115,6 +115,23 @@ li {
     margin-left: 30px;
 }
 
+.score_step span {
+    animation: jumping 0.5s;
+    animation-direction: reverse;
+    animation-timing-function: cubic-bezier(0.5, 0.5, 0.5, 0.5);
+    animation-iteration-count: 3;
+    /* cursor: pointer; */
+}
+
+@keyframes jumping {
+    0% {
+        transform: translateY(5px)
+    }
+    100% {
+        transform: translateY(0px)
+    }
+}
+
 table {
     width: 80%;
     margin: auto;
@@ -150,7 +167,10 @@ td {
 #td-x,
 #td-d {
     border-bottom: 1px solid #000;
-    ;
+}
+
+#r9-current {
+    border: #958b6d 1px solid;
 }
 
 button#clear_history {
@@ -164,8 +184,8 @@ button#clear_history {
 
 #field {
     margin: auto;
-    width: 600px;
-    height: 600px;
+    width: 540px;
+    height: 540px;
     display: grid;
     grid-template-areas: "a1 a2 a3" "b1 b2 b3" "c1 c2 c3";
     border: 5px solid black;

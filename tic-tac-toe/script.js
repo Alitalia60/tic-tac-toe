@@ -23,12 +23,11 @@ const cells = {
 };
 
 const colors = {
-    colorCellX: 'yellow',
-    colorCellO: 'cyan',
-    colorOther: '#6c7375',
-    colorText: 'white'
-
-}
+    colorCellX: "yellow",
+    colorCellO: "cyan",
+    colorOther: "#6c7375",
+    colorText: "white",
+};
 
 let gameCounter = 0;
 let countDraw = 0;
@@ -39,23 +38,22 @@ let arrayOfScore = [];
 const completedMoves = [];
 const sounds = {
     urlBackSound0: "./assets/audio/preview.mp3",
-    urlBackSound1: "./assets/audio/clowning-around_0104",
+    urlBackSound1: "./assets/audio/clowning_around.mp3",
     urlClickSound0: "./assets/audio/click.wav",
     urlclickSound1: "./assets/audio/click-boom.mp3",
     // urlTadamSound0: "./assets/audio/kc78v26.mp3",
     urlTadamSound0: "./assets/audio/tuturu_1.mp3",
     urltadamSound1: "./assets/audio/tuturu_1.mp3",
-    urlUpsSound: "./assets/audio/he-he-boy.mp3",
+    urlOopsSound: "./assets/audio/he-he-boy.mp3",
 };
 
-
-const BackSound = new Audio(sounds.urlBackSound0);
-BackSound.volume = 0.1;
+const BackSound = new Audio(sounds.urlBackSound1);
+BackSound.volume = 0.2;
 const clickSound = new Audio(sounds.urlClickSound0);
 const tadamSound = new Audio(sounds.urlTadamSound0);
-const upsSound = new Audio(sounds.urlUpsSound);
+const oopsSound = new Audio(sounds.urlOopsSound);
 
-let isMusicMute = false;
+let isMusicMute = true;
 let isSoundMute = false;
 
 const field = document.getElementById("field");
@@ -70,15 +68,17 @@ const gameOverBox = document.querySelector(".game_over_box");
 
 const btnPlay = document.querySelector(".btn_start_game");
 
-const btnClearHistory = document.getElementById('clear_history');
-btnClearHistory.addEventListener('click', clearHistory)
+const btnClearHistory = document.getElementById("clear_history");
+btnClearHistory.addEventListener("click", clearHistoryLocalStore);
 
 document.addEventListener("DOMContentLoaded", init);
+
+showScore()
 
 //=================================================
 function toggleVolumeMusic() {
     isMusicMute = !isMusicMute;
-    localStorage.setItem('isMusicMute', (isMusicMute ? '1' : '0'));
+    // localStorage.setItem("isMusicMute", isMusicMute ? "1" : "0");
     switchMusicMute.classList.toggle("switch_off");
     playMusic();
 }
@@ -86,9 +86,9 @@ function toggleVolumeMusic() {
 //=================================================
 function toggleVolumeSound() {
     isSoundMute = !isSoundMute;
-    localStorage.setItem('isSoundMute', (isSoundMute ? '1' : '0'));
+    localStorage.setItem("isSoundMute", isSoundMute ? "1" : "0");
     playSound();
-    switchSoundMute.classList.toggle('switch_off');
+    switchSoundMute.classList.toggle("switch_off");
 }
 
 //=================================================
@@ -97,19 +97,25 @@ function init() {
 
     btnPlay.addEventListener("click", changeAction);
 
-    isMusicMute = localStorage.getItem('isMusicMute') == '1';
+    // isMusicMute = localStorage.getItem("isMusicMute") == "1";
     if (isMusicMute) {
-        switchMusicMute.classList.add('switch_off')
+        switchMusicMute.classList.add("switch_off");
     }
 
-    isSoundMute = localStorage.getItem('isSoundMute') == '1';
+    isSoundMute = localStorage.getItem("isSoundMute") == "1";
     if (isSoundMute) {
-        switchSoundMute.classList.add('switch_off')
+        switchSoundMute.classList.add("switch_off");
     }
 
     showInfoBox([messages.ready, "white"]);
-    arrayOfScore.length = 0;
-    showHistoryBox()
+    //   arrayOfScore.length = 0;
+
+    let fromHistory = localStorage.getItem("scoreHistory");
+    if (fromHistory.length > 0) {
+        arrayOfScore = fromHistory.split(",");
+    }
+
+    fillHistoryBox();
 }
 
 //=================================================
@@ -141,6 +147,10 @@ function changeAction() {
             break;
         case "finished":
             gameStatus = "ready";
+            const score_step = document.querySelector(".score_step");
+            score_step.style.animation = 'none'
+            score_step.style.color = null;
+
             changeAction();
             break;
         default:
@@ -161,9 +171,9 @@ function playTadam() {
     }
 }
 //=================================================
-function playUps() {
+function playOops() {
     if (!isSoundMute) {
-        upsSound.play();
+        oopsSound.play();
     }
 }
 
@@ -200,7 +210,7 @@ function putLabel(ev) {
             return;
         }
         completedMoves.push(cell.id);
-        // console.log(completedMoves.length);
+
         playSound();
         step++;
         if (cell.textContent == "") {
@@ -236,7 +246,7 @@ function checkWinner() {
         cells.a3 + cells.b3 + cells.c3 == "XXX"
     ) {
         countWinsX++;
-        gameOver('x');
+        gameOver("x");
         showInfoBox([messages.over, "red"], [messages.x_win, "yellow"]);
         playTadam();
         return;
@@ -252,16 +262,16 @@ function checkWinner() {
         cells.a3 + cells.b3 + cells.c3 == "000"
     ) {
         countWinsO++;
-        gameOver('o');
+        gameOver("o");
         showInfoBox([messages.over, "red"], [messages.o_win, "yellow"]);
         playTadam();
         return;
     }
     if (completedMoves.length >= 9) {
         countDraw++;
-        gameOver('d');
+        gameOver("d");
         showInfoBox([messages.over, "red"], [messages.draw, "yellow"]);
-        playUps();
+        playOops();
         return;
     }
 }
@@ -273,41 +283,43 @@ function gameOver(hwoWin) {
         arrayOfScore.shift();
     }
 
-    console.log(arrayOfScore);
-    localStorage.setItem('scoreHistory', arrayOfScore.toString());
+    localStorage.setItem("scoreHistory", arrayOfScore.toString());
+    fillHistoryBox();
 
     gameStatus = "finished";
     field.removeEventListener("click", putLabel);
+
+    const score_step = document.querySelector(".score_step");
+    score_step.style.animation = 'jumping 0.5s infinite'
+    score_step.style.color = 'orange'
+
     showStatusBox();
-    showHistoryBox();
     btnPlay.textContent = "PRESS TO RESTART";
 }
 
-
 //=================================================
-function showHistoryBox() {
-    let fromHistory = localStorage.getItem("scoreHistory");
-    if (fromHistory.length > 0) {
-        arrayOfScore = fromHistory.split(',');
-    }
-
-    for (let i = 0; i < 10; i++) {
+function fillHistoryBox() {
+    clearHistoryTableElement();
+    for (let i = 0; i < arrayOfScore.length; i++) {
         switch (arrayOfScore[i]) {
-            case 'x':
-                document.getElementById(`td-r${i}-x`).textContent = '+';
-                document.getElementById(`td-r${i}-x`).style.color = 'black';
-                document.getElementById(`td-r${i}-x`).style.backgroundColor = colors.colorCellX;
+            case "x":
+                document.getElementById(`td-r${i}-x`).textContent = "+";
+                document.getElementById(`td-r${i}-x`).style.color = "black";
+                document.getElementById(`td-r${i}-x`).style.backgroundColor =
+                    colors.colorCellX;
 
                 break;
-            case 'o':
-                document.getElementById(`td-r${i}-o`).textContent = '+';
-                document.getElementById(`td-r${i}-o`).style.color = 'black';
-                document.getElementById(`td-r${i}-o`).style.backgroundColor = colors.colorCellO;
+            case "o":
+                document.getElementById(`td-r${i}-o`).textContent = "+";
+                document.getElementById(`td-r${i}-o`).style.color = "black";
+                document.getElementById(`td-r${i}-o`).style.backgroundColor =
+                    colors.colorCellO;
                 break;
-            case 'd':
-                document.getElementById(`td-r${i}-d`).textContent = '+';
-                document.getElementById(`td-r${i}-d`).style.color = 'white';
-                document.getElementById(`td-r${i}-d`).style.backgroundColor = colors.colorOther;
+            case "d":
+                document.getElementById(`td-r${i}-d`).textContent = "+";
+                document.getElementById(`td-r${i}-d`).style.color = "white";
+                document.getElementById(`td-r${i}-d`).style.backgroundColor =
+                    colors.colorOther;
                 break;
 
             default:
@@ -316,31 +328,35 @@ function showHistoryBox() {
     }
 }
 
-function clearHistory() {
+//=================================================
+function clearHistoryLocalStore() {
     arrayOfScore.length = 0;
+    localStorage.setItem("scoreHistory", arrayOfScore.toString());
+    clearHistoryTableElement();
+    fillHistoryBox();
+}
+
+function clearHistoryTableElement() {
     for (let i = 0; i < 10; i++) {
-        document.getElementById(`td-r${i}-x`).textContent = '.';
+        document.getElementById(`td-r${i}-x`).textContent = ".";
         document.getElementById(`td-r${i}-x`).style.color = null;
         document.getElementById(`td-r${i}-x`).style.backgroundColor = null;
 
-
-        document.getElementById(`td-r${i}-o`).textContent = '.';
+        document.getElementById(`td-r${i}-o`).textContent = ".";
         document.getElementById(`td-r${i}-o`).style.color = null;
         document.getElementById(`td-r${i}-o`).style.backgroundColor = null;
 
-        document.getElementById(`td-r${i}-d`).textContent = '.';
-        document.getElementById(`td-r${i}-o`).style.color = null;
-        document.getElementById(`td-r${i}-o`).style.backgroundColor = null;
-
+        document.getElementById(`td-r${i}-d`).textContent = ".";
+        document.getElementById(`td-r${i}-d`).style.color = null;
+        document.getElementById(`td-r${i}-d`).style.backgroundColor = null;
     }
-
 }
 
 //=================================================
 function showInfoBox(mes1, mes2) {
     gameOverBox.style.top = "0px";
     gameOverBox.style.cursor = "auto";
-    btnPlay.style.transform = 'none'
+    btnPlay.style.transform = "none";
 
     const h2_line_1 = document.querySelector(".status_line_1");
     h2_line_1.textContent = mes1[0];
@@ -354,7 +370,7 @@ function showInfoBox(mes1, mes2) {
         h2_line_2.textContent = "";
         h2_line_2.style.color = "none";
     }
-    field.style.transform = 'translateY(165px)';
+    field.style.transform = "translateY(165px)";
 
 }
 
@@ -362,21 +378,51 @@ function showInfoBox(mes1, mes2) {
 function hideInfoBox() {
     gameOverBox.style.cursor = "pointer";
     gameOverBox.style.top = "-280px";
-    btnPlay.style.transform = 'translateY(72px)'
+    btnPlay.style.transform = "translateY(72px)";
     btnPlay.textContent = "PRESS TO PAUSE";
 
-    field.style.transform = 'none';
+    field.style.transform = "none";
 }
 
 //=================================================
 function showStatusBox() {
     document.querySelector(".score_game").textContent = "Game: " + gameCounter;
-    document.querySelector(".score_step").textContent = "Moves: " + zero2dash(step);
-    document.querySelector(".score_draw").textContent = "Draw: " + zero2dash(countDraw);
-    document.querySelector(".score_x_wins").textContent = "X wins: " + zero2dash(countWinsX);
-    document.querySelector(".score_o_wins").textContent = "O wins: " + zero2dash(countWinsO);
+    document.querySelector(".score_step").textContent =
+        "Step: " + zero2dash(step);
+    document.querySelector(".score_draw").textContent =
+        "Draw: " + zero2dash(countDraw);
+    document.querySelector(".score_x_wins").textContent =
+        "X wins: " + zero2dash(countWinsX);
+    document.querySelector(".score_o_wins").textContent =
+        "O wins: " + zero2dash(countWinsO);
 }
 
 function zero2dash(x) {
-    return x == 0 ? '' : x;
+    return x == 0 ? "" : x;
+}
+
+
+function showScore() {
+    console.log("   Ваша отметка - 60 балла(ов)");
+    console.log("==================================");
+    console.log("1. Вёрстка +10");
+    console.log("   - реализован интерфейс игры +5");
+    console.log("   - в футере приложения есть ссылка на гитхаб автора приложения,\n год создания приложения, логотип курса со ссылкой на курс +5");
+    console.log("==================================");
+    console.log("2. При кликах по игровому полю по очереди отображаются крестики и нолики. Первая фигура всегда крестик +10");
+    console.log("==================================");
+    console.log("3. Игра завершается, когда три фигуры выстроились в ряд по вертикали, горизонтали или диагонали +10");
+    console.log("==================================");
+    console.log("4. По окончанию игры выводится её результат - выигравшая фигура и количество ходов от начала игры до её завершения +10");
+    console.log("==================================");
+    console.log("5. Результаты последних 10 игр сохраняются в local storage. Есть таблица рекордов, в которой отображаются результаты предыдущих 10 игр +10");
+    console.log("==================================");
+    console.log("6. Анимации или звуки, или настройки игры. Баллы начисляются за любой из перечисленных пунктов +10");
+    console.log("==================================");
+    console.log("7. На усмотрение ПРОВРЯЮЩИХ:");
+    console.log("   - очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10");
+    console.log("   (высокое качество оформления приложения предполагает собственное оригинальное оформление равное или отличающееся в лучшую сторону по сравнению с демо)");
+    // 
+    // Очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10
+    // высокое качество оформления приложения предполагает собственное оригинальное оформление равное или отличающееся в лучшую сторону по сравнению с демо
 }
