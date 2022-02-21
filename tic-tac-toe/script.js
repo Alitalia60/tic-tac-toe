@@ -73,6 +73,8 @@ btnClearHistory.addEventListener("click", clearHistoryLocalStore);
 
 document.addEventListener("DOMContentLoaded", init);
 
+showScore()
+
 //=================================================
 function toggleVolumeMusic() {
   isMusicMute = !isMusicMute;
@@ -107,14 +109,12 @@ function init() {
 
   showInfoBox([messages.ready, "white"]);
   //   arrayOfScore.length = 0;
-  console.log("localStorage=", localStorage.getItem("scoreHistory"));
 
   let fromHistory = localStorage.getItem("scoreHistory");
   if (fromHistory.length > 0) {
     arrayOfScore = fromHistory.split(",");
   }
 
-  console.log("init. arrayOfScore=", arrayOfScore);
   fillHistoryBox();
 }
 
@@ -147,6 +147,10 @@ function changeAction() {
       break;
     case "finished":
       gameStatus = "ready";
+      const score_step=document.querySelector(".score_step");
+      score_step.style.animation='none'
+      score_step.style.color=null;
+    
       changeAction();
       break;
     default:
@@ -206,7 +210,7 @@ function putLabel(ev) {
       return;
     }
     completedMoves.push(cell.id);
-    // console.log(completedMoves.length);
+
     playSound();
     step++;
     if (cell.textContent == "") {
@@ -279,12 +283,16 @@ function gameOver(hwoWin) {
     arrayOfScore.shift();
   }
 
-  console.log("game over. arrayOfScore =", arrayOfScore);
   localStorage.setItem("scoreHistory", arrayOfScore.toString());
   fillHistoryBox();
 
   gameStatus = "finished";
   field.removeEventListener("click", putLabel);
+  
+  const score_step=document.querySelector(".score_step");
+  score_step.style.animation='jumping 0.5s infinite'
+  score_step.style.color='orange'
+
   showStatusBox();
   btnPlay.textContent = "PRESS TO RESTART";
 }
@@ -363,6 +371,10 @@ function showInfoBox(mes1, mes2) {
     h2_line_2.style.color = "none";
   }
   field.style.transform = "translateY(165px)";
+
+  
+  
+// TODO **********************************************
 }
 
 //=================================================
@@ -379,7 +391,7 @@ function hideInfoBox() {
 function showStatusBox() {
   document.querySelector(".score_game").textContent = "Game: " + gameCounter;
   document.querySelector(".score_step").textContent =
-    "Moves: " + zero2dash(step);
+    "Step: " + zero2dash(step);
   document.querySelector(".score_draw").textContent =
     "Draw: " + zero2dash(countDraw);
   document.querySelector(".score_x_wins").textContent =
@@ -390,4 +402,30 @@ function showStatusBox() {
 
 function zero2dash(x) {
   return x == 0 ? "" : x;
+}
+
+
+function showScore() {
+    console.log("   Ваша отметка - 60 балла(ов)");
+    console.log("==================================");
+    console.log("1. Вёрстка +10");
+    console.log("   - реализован интерфейс игры +5");
+    console.log("   - в футере приложения есть ссылка на гитхаб автора приложения,\n год создания приложения, логотип курса со ссылкой на курс +5");
+    console.log("==================================");
+    console.log("2. При кликах по игровому полю по очереди отображаются крестики и нолики. Первая фигура всегда крестик +10");
+    console.log("==================================");
+    console.log("3. Игра завершается, когда три фигуры выстроились в ряд по вертикали, горизонтали или диагонали +10");
+    console.log("==================================");
+    console.log("4. По окончанию игры выводится её результат - выигравшая фигура и количество ходов от начала игры до её завершения +10");
+    console.log("==================================");
+    console.log("5. Результаты последних 10 игр сохраняются в local storage. Есть таблица рекордов, в которой отображаются результаты предыдущих 10 игр +10");
+    console.log("==================================");
+    console.log("6. Анимации или звуки, или настройки игры. Баллы начисляются за любой из перечисленных пунктов +10");
+    console.log("==================================");
+    console.log("7. На усмотрение ПРОВРЯЮЩИХ:");
+    console.log("   - очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10");
+    console.log("   (высокое качество оформления приложения предполагает собственное оригинальное оформление равное или отличающееся в лучшую сторону по сравнению с демо)");
+// 
+// Очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10
+// высокое качество оформления приложения предполагает собственное оригинальное оформление равное или отличающееся в лучшую сторону по сравнению с демо
 }
