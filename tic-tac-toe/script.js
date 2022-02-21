@@ -209,24 +209,32 @@ function putLabel(ev) {
         if (completedMoves.includes(cell.id)) {
             return;
         }
-        completedMoves.push(cell.id);
-
-        playSound();
-        step++;
-        if (cell.textContent == "") {
-            if (whoseMove == "0") {
-                cell.style.backgroundColor = colors.colorCellO;
-                cell.classList.add("cell_krug");
-                cell.style.transform = "rotateX(180deg)";
-                cells[cell.id] = "0";
-            } else {
-                cell.style.backgroundColor = colors.colorCellX;
-                cell.classList.add("cell_krest");
-                cell.style.transform = "rotateZ(180deg)";
-                cells[cell.id] = "X";
-                // cell.style.transform = 'rotateY(180deg)';
+        if (ev.target.classList.contains("cell")) {
+            let cell = ev.target;
+            if (completedMoves.includes(cell.id)) {
+                return;
             }
-            whoseMove = whoseMove == "0" ? "X" : "0";
+            completedMoves.push(cell.id);
+
+            playSound();
+            step++;
+            if (cell.textContent == "") {
+                if (whoseMove == "0") {
+                    cell.style.backgroundColor = colors.colorCellO;
+                    cell.classList.add("cell_krug");
+                    cell.style.transform = "rotateX(180deg)";
+                    cells[cell.id] = "0";
+                } else {
+                    cell.style.backgroundColor = colors.colorCellX;
+                    cell.classList.add("cell_krest");
+                    cell.style.transform = "rotateZ(180deg)";
+                    cells[cell.id] = "X";
+                    // cell.style.transform = 'rotateY(180deg)';
+                }
+                whoseMove = whoseMove == "0" ? "X" : "0";
+            }
+            showStatusBox();
+            checkWinner();
         }
         showStatusBox();
         checkWinner();
@@ -422,7 +430,4 @@ function showScore() {
     console.log("7. На усмотрение ПРОВРЯЮЩИХ:");
     console.log("   - очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10");
     console.log("   (высокое качество оформления приложения предполагает собственное оригинальное оформление равное или отличающееся в лучшую сторону по сравнению с демо)");
-    // 
-    // Очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10
-    // высокое качество оформления приложения предполагает собственное оригинальное оформление равное или отличающееся в лучшую сторону по сравнению с демо
 }

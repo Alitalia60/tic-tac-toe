@@ -132,6 +132,23 @@ li {
     }
 }
 
+.score_step span {
+    animation: jumping 0.5s;
+    animation-direction: reverse;
+    animation-timing-function: cubic-bezier(0.5, 0.5, 0.5, 0.5);
+    animation-iteration-count: 3;
+    /* cursor: pointer; */
+}
+
+@keyframes jumping {
+    0% {
+        transform: translateY(5px)
+    }
+    100% {
+        transform: translateY(0px)
+    }
+}
+
 table {
     width: 80%;
     margin: auto;
