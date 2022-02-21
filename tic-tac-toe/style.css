@@ -164,8 +164,8 @@ button#clear_history {
 
 #field {
     margin: auto;
-    width: 600px;
-    height: 600px;
+    width: 540px;
+    height: 540px;
     display: grid;
     grid-template-areas: "a1 a2 a3" "b1 b2 b3" "c1 c2 c3";
     border: 5px solid black;
