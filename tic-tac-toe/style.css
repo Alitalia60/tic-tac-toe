@@ -152,6 +152,9 @@ td {
     border-bottom: 1px solid #000;
     ;
 }
+#r9-current{
+    border: #958b6d 1px solid;
+}
 
 button#clear_history {
     width: 50%;
