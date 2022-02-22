@@ -93,7 +93,7 @@ function toggleVolumeSound() {
 
 //=================================================
 function init() {
-    document.body.style.overflow = "hidden"; // do not scrolling
+    // document.body.style.overflow = "hidden"; // do not scrolling
 
     btnPlay.addEventListener("click", changeAction);
 
@@ -159,28 +159,28 @@ function changeAction() {
 }
 
 //=================================================
-function playSound() {
+async function playSound() {
     if (!isSoundMute) {
-        clickSound.play();
+        await clickSound.play();
     }
 }
 //=================================================
-function playTadam() {
+async function playTadam() {
     if (!isSoundMute) {
-        tadamSound.play();
+        await tadamSound.play();
     }
 }
 //=================================================
-function playUps() {
+async function playUps() {
     if (!isSoundMute) {
-        upsSound.play();
+        await upsSound.play();
     }
 }
 
 //=================================================
-function playMusic() {
+async function playMusic() {
     if (!isMusicMute) {
-        BackSound.play();
+        await BackSound.play();
     } else {
         BackSound.pause();
     }
@@ -371,10 +371,6 @@ function showInfoBox(mes1, mes2) {
         h2_line_2.style.color = "none";
     }
     field.style.transform = "translateY(265px)";
-
-
-
-    // TODO **********************************************
 }
 
 //=================================================
