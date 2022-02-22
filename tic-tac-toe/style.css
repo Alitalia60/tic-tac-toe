@@ -115,22 +115,6 @@
       margin-left: 30px;
   }
   
-  .score_step span {
-      animation: jumping 0.5s;
-      animation-direction: reverse;
-      animation-timing-function: cubic-bezier(0.5, 0.5, 0.5, 0.5);
-      animation-iteration-count: 3;
-      /* cursor: pointer; */
-  }
-  
-  @keyframes jumping {
-      0% {
-          transform: translateY(5px)
-      }
-      100% {
-          transform: translateY(0px)
-      }
-  }
   
   .score_step span {
       animation: jumping 0.5s;
@@ -346,7 +330,7 @@
       filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%) contrast(87%);
   }
   
-  @media only screen and (max-width: 1366px) {
+  @media screen and (max-width: 1366px) {
       #field {
           width: 450px;
           height: 450px;
@@ -357,6 +341,7 @@
       }
       .info_table {
           font-size: 30px;
+          height: 420px;
       }
       table {
           font-size: 20px;
