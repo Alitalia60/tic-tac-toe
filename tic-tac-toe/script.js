@@ -38,7 +38,7 @@ let arrayOfScore = [];
 const completedMoves = [];
 const sounds = {
   urlBackSound0: "./assets/audio/preview.mp3",
-  urlBackSound1: "./assets/audio/clowning-around_0104",
+  urlBackSound1: "./assets/audio/clowning_around.mp3",
   urlClickSound0: "./assets/audio/click.wav",
   urlclickSound1: "./assets/audio/click-boom.mp3",
   // urlTadamSound0: "./assets/audio/kc78v26.mp3",
@@ -47,13 +47,13 @@ const sounds = {
   urlUpsSound: "./assets/audio/he-he-boy.mp3",
 };
 
-const BackSound = new Audio(sounds.urlBackSound0);
-BackSound.volume = 0.1;
+const BackSound = new Audio(sounds.urlBackSound1);
+BackSound.volume = 0.2;
 const clickSound = new Audio(sounds.urlClickSound0);
 const tadamSound = new Audio(sounds.urlTadamSound0);
 const upsSound = new Audio(sounds.urlUpsSound);
 
-let isMusicMute = false;
+let isMusicMute = true;
 let isSoundMute = false;
 
 const field = document.getElementById("field");
