@@ -84,7 +84,7 @@ header {
 main {
     padding-top: 50px;
     width: 100%;
-    height: 70vh;
+    height: 80vh;
     background-image: url(./assets/img/krestik-nolik-feniks-bumaga.jpg);
     background-size: contain;
     background-position: 0 0;
@@ -114,7 +114,6 @@ main {
 li {
     margin-left: 30px;
 }
-
 
 .score_step span {
     animation: jumping 0.5s;
@@ -289,12 +288,13 @@ h1 {
     transition-duration: 0.5s;
 }
 
-header, footer {
-  color: white;
-  background-color: black;
-  height: 80px;
-  font-size: 36px;
-}  
+header,
+footer {
+    color: white;
+    background-color: black;
+    height: 80px;
+    font-size: 36px;
+}
 
 .footer_container {
     display: flex;
