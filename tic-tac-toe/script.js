@@ -159,28 +159,28 @@ function changeAction() {
 }
 
 //=================================================
-function playSound() {
+async function playSound() {
   if (!isSoundMute) {
-    clickSound.play();
+    await clickSound.play();
   }
 }
 //=================================================
-function playTadam() {
+async function playTadam() {
   if (!isSoundMute) {
-    tadamSound.play();
+    await tadamSound.play();
   }
 }
 //=================================================
-function playUps() {
+async function playUps() {
   if (!isSoundMute) {
-    upsSound.play();
+    await upsSound.play();
   }
 }
 
 //=================================================
-function playMusic() {
+async function playMusic() {
   if (!isMusicMute) {
-    BackSound.play();
+   await BackSound.play();
   } else {
     BackSound.pause();
   }
