@@ -49,6 +49,7 @@ const sounds = {
 
 const BackSound = new Audio(sounds.urlBackSound1);
 BackSound.volume = 0.2;
+BackSound.loop = true;
 const clickSound = new Audio(sounds.urlClickSound0);
 const tadamSound = new Audio(sounds.urlTadamSound0);
 const oopsSound = new Audio(sounds.urlOopsSound);
