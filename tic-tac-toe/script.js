@@ -78,7 +78,7 @@ showScore()
 //=================================================
 function toggleVolumeMusic() {
   isMusicMute = !isMusicMute;
-  localStorage.setItem("isMusicMute", isMusicMute ? "1" : "0");
+  //localStorage.setItem("isMusicMute", isMusicMute ? "1" : "0");
   switchMusicMute.classList.toggle("switch_off");
   playMusic();
 }
@@ -97,7 +97,7 @@ function init() {
 
   btnPlay.addEventListener("click", changeAction);
 
-  isMusicMute = localStorage.getItem("isMusicMute") == "1";
+  //isMusicMute = localStorage.getItem("isMusicMute") == "1";
   if (isMusicMute) {
     switchMusicMute.classList.add("switch_off");
   }
