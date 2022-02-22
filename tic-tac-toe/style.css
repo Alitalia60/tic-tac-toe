@@ -13,6 +13,11 @@ body {
     font-family: "Merriweather", serif;
 }
 
+html,
+body {
+    height: 100%;
+}
+
 body,
 button {
     font-family: "Indie Flower", cursive;
@@ -183,7 +188,8 @@ button#clear_history {
 }
 
 #field {
-    margin: auto;
+    /* margin: auto; */
+    margin: 2%;
     width: 540px;
     height: 540px;
     display: grid;
@@ -294,6 +300,12 @@ footer {
     background-color: black;
     height: 80px;
     font-size: 36px;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
 }
 
 .footer_container {
